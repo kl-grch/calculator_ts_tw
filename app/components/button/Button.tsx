@@ -5,6 +5,7 @@ interface ButtonProps {
   type: "number" | "functional" | "operator";
   onClick?: MouseEventHandler<HTMLButtonElement>;
   style?: string | null;
+  disabled?: boolean;
 }
 
 function getTypeButton(type: string) {
@@ -17,11 +18,18 @@ function getTypeButton(type: string) {
   }
 }
 
-export default function Button({ value, type, onClick, style }: ButtonProps) {
+export default function Button({
+  value,
+  type,
+  onClick,
+  style,
+  disabled,
+}: ButtonProps) {
   return (
     <button
+      disabled={disabled}
       onClick={onClick}
-      className={`${getTypeButton(type)} flex h-20 w-full min-w-20 items-center justify-center rounded-full p-2 ${style}`}
+      className={`${getTypeButton(type)} flex min-h-20 min-w-20 items-center justify-center rounded-full p-2 select-none sm:w-full ${style}`}
     >
       {value}
     </button>
